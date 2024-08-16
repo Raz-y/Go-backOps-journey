@@ -1,0 +1,63 @@
+<!-- example.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Link Parser Example</title>
+</head>
+<body>
+    <h1>HTML Link Parser Example</h1>
+
+    <!-- Single link example -->
+    <!-- This is a simple example with one link -->
+    <p><a href="/home">Home</a></p>
+
+    <!-- Multiple links example -->
+    <!-- The parser should extract both links independently -->
+    <p>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </p>
+
+    <!-- Nested links example -->
+    <!-- Nested links are invalid HTML and should be treated with caution. -->
+    <!-- The outer link should be captured, but not the inner one. -->
+    <p>
+        <a href="/outer-link">Outer 
+            <a href="/inner-link">Inner Link</a>
+        Text</a>
+    </p>
+
+    <!-- Link without href example -->
+    <!-- This link lacks an href attribute, so it should be ignored. -->
+    <p><a>Just text without href</a></p>
+
+    <!-- Empty document example -->
+    <!-- There are no links here, so the parser should return an empty result. -->
+    <div>No links in this div.</div>
+
+    <!-- Text nodes without links example -->
+    <!-- The parser should recognize that there are no links and return an empty result. -->
+    <p>Just some text with no links at all.</p>
+
+    <!-- Malformed HTML example -->
+    <!-- The parser should handle this gracefully, capturing the first link but not crashing. -->
+    <p><a href="/malformed">Malformed link<a>Unclosed tag</p>
+
+    <!-- Link with attributes -->
+    <!-- A link with additional attributes that the parser should still capture correctly. -->
+    <p><a href="/profile" title="Profile Page" id="profile-link">Profile</a></p>
+
+    <!-- Complex nested example (should be handled correctly) -->
+    <!-- This contains nested tags but not nested links. Only the outermost link should be captured. -->
+    <p><a href="/complex">Complex <b>Link with <i>nested tags</i></b></a></p>
+
+    <!-- Broken nesting (invalid HTML) -->
+    <!-- The parser should ignore the inner link and only capture the outer one. -->
+    <p>
+        <a href="/broken-outer">Broken outer <a href="/broken-inner">Broken inner</a> Outer text</a>
+    </p>
+
+</body>
+</html>
